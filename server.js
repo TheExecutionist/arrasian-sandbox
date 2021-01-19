@@ -5071,25 +5071,7 @@ prepareToSpawn: (classArray, number, nameClass, typeOfLocation = 'norm') => {
                         o.skill.maintain();
                     }
                 });
-        };
-    })();
-        let boss = [];
-        return () => {
-            let census = {
-                crasher: 0,
-                miniboss: 0,
-                tank: 0,
-            };    
-            let npcs = entities.map(function npcCensus(instance) {
-                if (census[instance.type] != null) {
-                    census[instance.type]++;
-                    return instance;
-                }
-            }).filter(e => { return e; });    
-            // Spawning
-            spawnCrasher(census);
-            spawnBosses(census);
-            // Boss rush
+		            // Boss rush
 		//L is real
 	if (boss.length < c.BOSSES) {
 	let bosses = new Entity(room.randomType('norm'));
@@ -5123,7 +5105,9 @@ bosses.team = ran.choose([-100]);
 }
   }, 5000)
 }
-        })();
+	}
+        };
+    })();
     // The big food function
     let makefood = (() => {
         let food = [], foodSpawners = [];
