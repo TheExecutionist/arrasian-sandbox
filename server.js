@@ -5073,7 +5073,7 @@ prepareToSpawn: (classArray, number, nameClass, typeOfLocation = 'norm') => {
                 });
 		            // Boss rush
 		//L is real
-	if (boss.length < c.BOSSES) {
+	if (bots.length < c.BOSSES) {
 	let bosses = new Entity(room.randomType('norm'));
 bosses.define(Class.rkI);
 bosses.team = ran.choose([-100]);
