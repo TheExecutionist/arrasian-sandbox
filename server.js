@@ -5123,8 +5123,7 @@ bosses.team = ran.choose([-100]);
 }
   }, 5000)
 }
-        };
-    })();
+        })();
     // The big food function
     let makefood = (() => {
         let food = [], foodSpawners = [];
