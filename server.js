@@ -5073,7 +5073,6 @@ prepareToSpawn: (classArray, number, nameClass, typeOfLocation = 'norm') => {
                 });
             {
 let bosses = new Entity(room.randomType('dom1'))
-socket.brodcast('Round 1 has started! | AWP-ice')
 bosses.define(Class.awp_ice)
 bosses.team = -100
 bosses.ondead = () => {
