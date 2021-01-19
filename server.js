@@ -3478,7 +3478,7 @@ const sockets = (() => {
                     // Create and bind a body for the player host
                     let body = new Entity(loc);
                         body.protect();
-                        let arrayOfClasses = [Class.basicA, Class.basicB, Class.basicC];//put as many classes as you want made by oblivion plain;
+                        let arrayOfClasses = [Class.basic, Class.basic];//put as many classes as you want made by oblivion plain;
                      let newClass = arrayOfClasses[Math.floor(Math.random() * arrayOfClasses.length)];
                     body.define(newClass); // Start as a basic tank
                         body.name = name; // Define the name
@@ -3524,7 +3524,8 @@ const sockets = (() => {
                         case "tdm": {
                           // player.team = ran.choose([-1, -2, -3, -4, -100]); 
                           body.team = -player.team;
-                            body.color = [10, 11, 12, 15][player.team - 1];
+                            body.color = [10][player.team - 1];
+				//, 11, 12, 15 Add if game breaks...
                         } break;
                         default: {
                             body.color = (c.RANDOM_COLORS) ? 
@@ -3576,7 +3577,7 @@ const sockets = (() => {
                     socket.camera.x = body.x; socket.camera.y = body.y; socket.camera.fov = 2000;
                     // Mark it as spawned
                     socket.status.hasSpawned = true;
-                    body.sendMessage('You have joined the 4TDM! Welcome to the game.');
+                    body.sendMessage('You have joined Boss Rush! Welcome to the game.');
                     body.sendMessage('You will be invulnerable until you move or shoot.');
                     // Move the client camera
                     socket.talk('c', socket.camera.x, socket.camera.y, socket.camera.fov);
@@ -5073,65 +5074,39 @@ prepareToSpawn: (classArray, number, nameClass, typeOfLocation = 'norm') => {
             
         };
     })();
-         /* if (bots.length < c.BOTS) {
-        let tank = [];
-        let tier1 = [],
-          tier2 = [],
-          tier3 = [];
-          /*tier4 = [],
-          tier5 = [],
-          tier6 = [];*//*
-        Class.basic.UPGRADES_TIER_1.forEach(e => {
-          tier1.push(e);
-          tank.push(e);
-        });
-        tier1.forEach(e => {
-          if (!e.UPGRADES_TIER_2) return;
-          e.UPGRADES_TIER_2.forEach(e => {
-            tier2.push(e);
-            tank.push(e);
-          });
-        });
-        tier2.forEach(e => {
-          if (!e.UPGRADES_TIER_3) return;
-          e.UPGRADES_TIER_3.forEach(e => {
-            tier3.push(e);
-            tank.push(e);
-          });
-        });
-        tier3.forEach(e => {
-          if (!e.UPGRADES_TIER_4) return;
-          e.UPGRADES_TIER_4.forEach(e => {
-           // tier4.push(e);
-            tank.push(e);
-          });
-        });
-        let o = new Entity(room.random());
-        o.define(Class.bot);
-        o.define(tank[Math.floor(Math.random() * tank.length)]);
-        o.name += ran.chooseBotName();
-        o.refreshBodyAttributes();
-      o.team = ran.choose([-1, -2, -3, -4]);
-        if (o.team == -1) o.color = 10;
-        if (o.team == -2) o.color = 11;
-        if (o.team == -3) o.color = 12;
-      if (o.team == -4) o.color = 15;
-        bots.push(o);
-        
-                  
+          if (bots.length < c.BOSS) {
+{
+let bosses = new Entity(room.randomType('dom1'))
+socket.brodcast('Round 1 has started! | AWP-ice')
+bosses.define(Class.awp_ice)
+bosses.team = -100
+bosses.ondead = () => {
+  socket.brodcast('Round 2 | EK-1');
+  setTimeout(() => {
+    socket.brodcast('Round 2 has started!')
+    let bosses = new Entity(room.randomType('norm'))
+    bosses.define(Class.ekI)
+    bosses.team = -100
+    bosses.ondead = () => {
+      socket.brodcast('Round 3 | MK-1');
+      setTimeout(() => {
+        socket.brodcast('Round 3 has started!')
+        let bosses = new Entity(room.randomType('norm'))
+        bosses.define(Class.mkI)
+        bosses.team = -100
+        bosses.ondead = () => {
+          setTimeout(() => {
+          sockets.brodcast('Boss Rush test is complete.')
+          util.warn('Process ended.'); 
+          process.exit(1);
+      }, 10000)
     }
-    // Remove dead ones
-    bots = bots.filter(e => { return !e.isDead(); });
-    // Slowly upgrade them
-    bots.forEach(o => {
-        if (o.skill.level < 45) {
-            o.skill.score += 75;
-            o.skill.maintain();
-        }
-    });
-            
-        };
-    })();*/
+  }, 10000)
+}
+  }, 7500)
+}
+}
+	
     // The big food function
     let makefood = (() => {
         let food = [], foodSpawners = [];
