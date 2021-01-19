@@ -5071,11 +5071,7 @@ prepareToSpawn: (classArray, number, nameClass, typeOfLocation = 'norm') => {
                         o.skill.maintain();
                     }
                 });
-            
-        };
-    })();
-          if (bots.length < c.BOSS) {
-{
+            {
 let bosses = new Entity(room.randomType('dom1'))
 socket.brodcast('Round 1 has started! | AWP-ice')
 bosses.define(Class.awp_ice)
@@ -5106,6 +5102,8 @@ bosses.ondead = () => {
   }, 7500)
 }
 }
+        };
+    })();
 	
     // The big food function
     let makefood = (() => {
