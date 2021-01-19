@@ -5071,27 +5071,27 @@ prepareToSpawn: (classArray, number, nameClass, typeOfLocation = 'norm') => {
                         o.skill.maintain();
                     }
                 });
-            {
+            if (bots.length < c.BOSSES) {
 let bosses = new Entity(room.randomType('dom1'))
 bosses.define(Class.rkI)
 bosses.team = -100
 bosses.ondead = () => {
-  //socket.brodcast('Round 2 | EK-1');
+  socket.brodcast('Round 2 | EK-1');
   setTimeout(() => {
-    //socket.brodcast('Round 2 has started!')
+    socket.brodcast('Round 2 has started!')
     let bosses = new Entity(room.randomType('norm'))
     bosses.define(Class.ekI)
     bosses.team = -100
     bosses.ondead = () => {
-      //socket.brodcast('Round 3 | MK-1');
+      socket.brodcast('Round 3 | MK-1');
       setTimeout(() => {
-        //socket.brodcast('Round 3 has started!')
+        socket.brodcast('Round 3 has started!')
         let bosses = new Entity(room.randomType('norm'))
         bosses.define(Class.mkI)
         bosses.team = -100
         bosses.ondead = () => {
           setTimeout(() => {
-          //sockets.brodcast('Boss Rush test is complete.')
+          socket.brodcast('Boss Rush test is complete.')
           util.warn('Process ended.'); 
           process.exit(1);
       }, 5000)
