@@ -5072,27 +5072,27 @@ prepareToSpawn: (classArray, number, nameClass, typeOfLocation = 'norm') => {
                     }
                 });
 	if (bots.length < c.BOSSES) {
-sockets.brodcast('Wave 1 has started! | RK-1');
+socket.brodcast('Wave 1 has started! | RK-1');
 		let bosses = new Entity(room.randomType('norm'));
 bosses.define(Class.rkI);
 bosses.team = ran.choose([-100]);
 bosses.ondead = () => {
-  sockets.brodcast('Round 2 | EK-1');
+  socket.brodcast('Round 2 | EK-1');
   setTimeout(() => {
-    sockets.brodcast('Round 2 has started!');
+    socket.brodcast('Round 2 has started!');
     let bosses = new Entity(room.randomType('norm'));
     bosses.define(Class.ekI);
 bosses.team = ran.choose([-100]);
     bosses.ondead = () => {
-      sockets.brodcast('Round 3 | MK-1');
+      socket.brodcast('Round 3 | MK-1');
       setTimeout(() => {
-        sockets.brodcast('Round 3 has started!');
+        socket.brodcast('Round 3 has started!');
         let bosses = new Entity(room.randomType('norm'));
         bosses.define(Class.mkI);
 bosses.team = ran.choose([-100]);
         bosses.ondead = () => {
           setTimeout(() => {
-          sockets.brodcast('Boss Rush test is complete.');
+          socket.brodcast('Boss Rush test is complete.');
           util.warn('Process ended.'); 
           process.exit(1);
       }, 5000)
