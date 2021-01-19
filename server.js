@@ -5071,42 +5071,9 @@ prepareToSpawn: (classArray, number, nameClass, typeOfLocation = 'norm') => {
                         o.skill.maintain();
                     }
                 });
-	if (bots.length < c.BOSSES) {
-	let bosses = new Entity(room.randomType('norm'));
-bosses.define(Class.rkI);
-bosses.team = ran.choose([-100]);
-		bots.push(bosses);
-bosses.ondead = () => {
-  sockets.brodcast('Round 2 | EK-1');
-  setTimeout(() => {
-    sockets.brodcast('Round 2 has started!');
-    let bosses = new Entity(room.randomType('norm'));
-    bosses.define(Class.ekI);
-bosses.team = ran.choose([-100]);
-	  bots.push(bosses);
-    bosses.ondead = () => {
-      sockets.brodcast('Round 3 | MK-1');
-      setTimeout(() => {
-        sockets.brodcast('Round 3 has started!');
-        let bosses = new Entity(room.randomType('norm'));
-        bosses.define(Class.mkI);
-bosses.team = ran.choose([-100]);
-	      bots.push(bosses);
-        bosses.ondead = () => {
-          setTimeout(() => {
-          sockets.brodcast('Boss Rush test is complete.');
-          util.warn('Process ended.'); 
-          process.exit(1);
-      }, 5000)
-    }
-  }, 5000)
-}
-  }, 5000)
-}
-}
         };
     })();
-        let bosses = [];
+        let boss = [];
         return () => {
             let census = {
                 crasher: 0,
@@ -5124,7 +5091,7 @@ bosses.team = ran.choose([-100]);
             spawnBosses(census);
             // Boss rush
 		//L is real
-	if (bots.length < c.BOSSES) {
+	if (boss.length < c.BOSSES) {
 	let bosses = new Entity(room.randomType('norm'));
 bosses.define(Class.rkI);
 bosses.team = ran.choose([-100]);
