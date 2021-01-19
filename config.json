@@ -67,6 +67,6 @@
   "FOOD_AMOUNT": 0.04, 
   "SKILL_BOOST": 5,
   "TASTERAINBOW": 5,
-  "BOSS": 1,
+  "BOSSES": 1,
   "GLASS_HEALTH_FACTOR": 2
 }
