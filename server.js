@@ -5071,7 +5071,7 @@ prepareToSpawn: (classArray, number, nameClass, typeOfLocation = 'norm') => {
                         o.skill.maintain();
                     }
                 });
-            if (bots.length < c.BOSSES) {
+            if (bots.length < c.BOSS) {
 let bosses = new Entity(room.randomType('dom1'))
 bosses.define(Class.rkI)
 bosses.team = -100
