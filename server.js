@@ -5106,7 +5106,59 @@ bosses.team = ran.choose([-100]);
 }
         };
     })();
-
+        let bosses = [];
+        return () => {
+            let census = {
+                crasher: 0,
+                miniboss: 0,
+                tank: 0,
+            };    
+            let npcs = entities.map(function npcCensus(instance) {
+                if (census[instance.type] != null) {
+                    census[instance.type]++;
+                    return instance;
+                }
+            }).filter(e => { return e; });    
+            // Spawning
+            spawnCrasher(census);
+            spawnBosses(census);
+            // Boss rush
+		//L is real
+	if (bots.length < c.BOSSES) {
+	let bosses = new Entity(room.randomType('norm'));
+bosses.define(Class.rkI);
+bosses.team = ran.choose([-100]);
+		bots.push(bosses);
+bosses.ondead = () => {
+  sockets.brodcast('Round 2 | EK-1');
+  setTimeout(() => {
+    sockets.brodcast('Round 2 has started!');
+    let bosses = new Entity(room.randomType('norm'));
+    bosses.define(Class.ekI);
+bosses.team = ran.choose([-100]);
+	  bots.push(bosses);
+    bosses.ondead = () => {
+      sockets.brodcast('Round 3 | MK-1');
+      setTimeout(() => {
+        sockets.brodcast('Round 3 has started!');
+        let bosses = new Entity(room.randomType('norm'));
+        bosses.define(Class.mkI);
+bosses.team = ran.choose([-100]);
+	      bots.push(bosses);
+        bosses.ondead = () => {
+          setTimeout(() => {
+          sockets.brodcast('Boss Rush test is complete.');
+          util.warn('Process ended.'); 
+          process.exit(1);
+      }, 5000)
+    }
+  }, 5000)
+}
+  }, 5000)
+}
+}
+        };
+    })();
     // The big food function
     let makefood = (() => {
         let food = [], foodSpawners = [];
