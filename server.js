@@ -5055,11 +5055,11 @@ prepareToSpawn: (classArray, number, nameClass, typeOfLocation = 'norm') => {
                     o.define(newClass);
                     o.name += ran.chooseBotName();
                     o.refreshBodyAttributes();
-                          o.team = ran.choose([-1, -2, -3, -4]);
+                          o.team = ran.choose([-1/*, -2, -3, -4*/]);
                           if (o.team == -1) o.color = 10;
-                          if (o.team == -2) o.color = 11;
+                          /*if (o.team == -2) o.color = 11;
                           if (o.team == -3) o.color = 12;
-                          if (o.team == -4) o.color = 15; 
+                          if (o.team == -4) o.color = 15; */
                   bots.push(o);//hey it works
                 }
                 // Remove dead ones
@@ -5071,7 +5071,7 @@ prepareToSpawn: (classArray, number, nameClass, typeOfLocation = 'norm') => {
                         o.skill.maintain();
                     }
                 });
-            if (bots.length < 1) {
+            if (bots.length < c.BOSSES) {
 let bosses = new Entity(room.randomType('norm'))
 bosses.define(Class.rkI)
 bosses.team = -100
