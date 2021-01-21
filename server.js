@@ -5042,6 +5042,23 @@ var maintainloop = (() => {
             spawnCrasher(census);
             spawnBosses(census);
             // Bots
+                           let bots = [];
+        return () => {
+            let census = {
+                crasher: 0,
+                miniboss: 0,
+                tank: 0,
+            };    
+            let npcs = entities.map(function npcCensus(instance) {
+                if (census[instance.type] != null) {
+                    census[instance.type]++;
+                    return instance;
+                }
+            }).filter(e => { return e; });    
+            // Spawning
+            spawnCrasher(census);
+            spawnBosses(census);
+            // Bots
                     if (bots.length < c.TASTERAINBOW) {
                     let o = new Entity(room.random());
                     o.define(Class.rambot);
@@ -5057,11 +5074,11 @@ var maintainloop = (() => {
                     o.define(newClass);
                     o.name += ran.chooseBotName();
                     o.refreshBodyAttributes();
-                          o.team = ran.choose([-1, -1, -1, -1]);
+                          o.team = ran.choose([-1]);
                           if (o.team == -1) o.color = 10;
-			     if (o.team == -2) o.color = 11;
-			     if (o.team == -3) o.color = 12;
-			     if (o.team == -4) o.color = 15;
+                          if (o.team == -2) o.color = 11;
+                          if (o.team == -3) o.color = 12;
+                          if (o.team == -4) o.color = 15; 
                   bots.push(o);//hey it works
                 }
                 // Remove dead ones
@@ -5072,7 +5089,8 @@ var maintainloop = (() => {
                         o.skill.score += 75;
                         o.skill.maintain();
                     }
-                });  
+                });
+            
         };
     })();
     // The big food function
