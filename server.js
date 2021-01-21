@@ -4981,7 +4981,7 @@ var maintainloop = (() => {
 			case 18:
 				choice = [[Class.closeingtiem], 1, 'castle', 'norm']
 				sockets.brodcast('Server is closing')
-				sockets.brodcast('No! You dont throw the boo! You use them to steal items from other players!')
+				//sockets.brodcast('No! You dont throw the boo! You use them to steal items from other players!')
 				break;
                 }
                 boss.prepareToSpawn(...choice);
