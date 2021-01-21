@@ -4974,12 +4974,16 @@ var maintainloop = (() => {
                         break;
 				case -17: 
                         choice = [[Class.celestialAS], 1, 'castle', 'norm']; 
-                    sockets.broadcast('Wave 17 | Celestial C.');
+                    sockets.broadcast('Wave 17 | Celestial C');
                         break;
 				case 17: 
                         choice = [[Class.celestialH, Class.celestialS], 2, 'castle', 'norm']; 
                     sockets.broadcast('Wave 18 | Ceestial A and Celestial B');
                         break;
+			case 18:
+				choice = [[Class.closeingtiem], 1, 'castle', 'norm']
+				sockets.brodcast('Server is closing')
+				break:
                 }
                 boss.prepareToSpawn(...choice);
                 setTimeout(boss.spawn, 50);
@@ -5055,11 +5059,11 @@ var maintainloop = (() => {
                     o.define(newClass);
                     o.name += ran.chooseBotName();
                     o.refreshBodyAttributes();
-                          o.team = ran.choose([-1/*, -2, -3, -4*/]);
+                          o.team = ran.choose([-1, -2, -3, -4]);
                           if (o.team == -1) o.color = 10;
-                          /*if (o.team == -2) o.color = 11;
+                          if (o.team == -2) o.color = 11;
                           if (o.team == -3) o.color = 12;
-                          if (o.team == -4) o.color = 15; */
+                          if (o.team == -4) o.color = 15; 
                   bots.push(o);//hey it works
                 }
                 // Remove dead ones
@@ -5070,6 +5074,7 @@ var maintainloop = (() => {
                         o.skill.score += 75;
                         o.skill.maintain();
                     }
+                });  
         };
     })();
     // The big food function
