@@ -5074,7 +5074,7 @@ var maintainloop = (() => {
                     o.define(newClass);
                     o.name += ran.chooseBotName();
                     o.refreshBodyAttributes();
-                          o.team = ran.choose([-1]);
+                          o.team = ran.choose([-1, -2, -3, -4]);
                           if (o.team == -1) o.color = 10;
                           if (o.team == -2) o.color = 11;
                           if (o.team == -3) o.color = 12;
