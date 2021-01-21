@@ -4928,59 +4928,59 @@ var maintainloop = (() => {
                         break;
                   case 6:
                     choice = [[Class.mkI], 1, 'a', 'norm'];
-               sockets.brodcast('Wave 7 | MK-1');
+               sockets.broadcast('Wave 7 | MK-1');
                     break;
                   case 7:
                     choice = [[Class.ekI], 1, 'a', 'norm'];
-               sockets.brodcast('Wave 8 | EK-1');
+               sockets.broadcast('Wave 8 | EK-1');
                     break;
                     case 8: 
                         choice = [[Class.arrasianlorium], 1, 'castle', 'norm']; 
-                    sockets.brodcast('Wave 9 | Arrasian Hyrant');
+                    sockets.broadcast('Wave 9 | Arrasian Hyrant');
                         break;
                     case 9: 
                         choice = [[Class.awp_ice], 1, 'castle', 'dom1']; 
-                    sockets.brodcast('Wave 10 | AWP-ice');
+                    sockets.broadcast('Wave 10 | AWP-ice');
                         break;
                     case 10: 
                         choice = [[Class.rkI], 1, 'bossrush', 'norm']; 
-                    sockets.brodcast('Wave 11 | RK-1');
+                    sockets.broadcast('Wave 11 | RK-1');
                         break;
                     case 11: 
                         choice = [[Class.guardian], 1, 'a', 'nest']; 
-                    sockets.brodcast('Wave 12 | Guardian');
+                    sockets.broadcast('Wave 12 | Guardian');
                         break;
 				case 12: 
                         choice = [[Class.ps3_33], 1, 'a', 'nest']; 
-                    sockets.brodcast('Wave 13 | PS3_33');
+                    sockets.broadcast('Wave 13 | PS3_33');
                         break;
 				case 13: 
                         choice = [[Class.s2_22], 1, 'a', 'dom1']; 
-                    sockets.brodcast('Wave 14 | S2_22');
+                    sockets.broadcast('Wave 14 | S2_22');
                         break;
                     case 14: 
                         choice = [[Class.terminatorA], 1, 'castle', 'nest']; 
-                    sockets.brodcast('Wave 15 | Terminator');
+                    sockets.broadcast('Wave 15 | Terminator');
                         break;
 				case 15: 
                         choice = [[Class.celestialH], 1, 'castle', 'norm']; 
-                    sockets.brodcast('Wave 16 | Celestial A');
+                    sockets.broadcast('Wave 16 | Celestial A');
                         break;
 				case 16: 
                         choice = [[Class.celestialS], 1, 'castle', 'norm']; 
-                    sockets.brodcast('Wave 17 | Celestial B.');
+                    sockets.broadcast('Wave 17 | Celestial B.');
                         break;
 				case -17: 
                         choice = [[Class.celestialAS], 1, 'castle', 'norm']; 
-                    sockets.brodcast('Wave 17 | Celestial C');
+                    sockets.broadcast('Wave 17 | Celestial C');
                         break;
 				case 17: 
                         choice = [[Class.celestialH, Class.celestialS], 2, 'castle', 'norm']; 
-                    sockets.brodcast('Wave 18 | Ceestial A and Celestial B');
+                    sockets.broadcast('Wave 18 | Ceestial A and Celestial B');
                         break;
 			case 18:
 				choice = [[Class.closeingtiem], 1, 'castle', 'norm']
-				sockets.brodcast('Server is closing')
+				sockets.broadcast('Server is closing')
 				break;
                 }
                 boss.prepareToSpawn(...choice);
@@ -5057,8 +5057,11 @@ var maintainloop = (() => {
                     o.define(newClass);
                     o.name += ran.chooseBotName();
                     o.refreshBodyAttributes();
-                          o.team = ran.choose([-1]);
+                          o.team = ran.choose([-1, -1, -1, -1]);
                           if (o.team == -1) o.color = 10;
+			     if (o.team == -2) o.color = 11;
+			     if (o.team == -3) o.color = 12;
+			     if (o.team == -4) o.color = 15;
                   bots.push(o);//hey it works
                 }
                 // Remove dead ones
