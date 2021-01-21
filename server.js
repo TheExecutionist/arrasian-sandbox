@@ -4849,9 +4849,9 @@ var maintainloop = (() => {
     }
     placeRoids();
     // Spawning functions
-
-  let spawnBosses = (() => {
+    let spawnBosses = (() => {
         let timer = 0;
+        let tier = 0;
         let boss = (() => {
             let i = 0,
                 names = [],
@@ -4871,121 +4871,121 @@ var maintainloop = (() => {
                     o.name = names[i++];
             };
             return {
-prepareToSpawn: (classArray, number, nameClass, typeOfLocation = 'norm') => {
-         n = number;
+                prepareToSpawn: (classArray, number, nameClass, typeOfLocation = 'norm') => {
+                    n = number;
                     bois = classArray;
                     loc = typeOfLocation;
                     names = ran.chooseBossName(nameClass, number);
-                    i = 0;            
-	if (n === 1) {
-                        begin = 'A visitor is coming.';
+                    i = 0;
+                    if (n === 1) {
+                        begin = 'Next Wave Starting';
                         arrival = names[0] + ' has arrived.'; 
                     } else {
-                        begin = 'Visitors are coming.';
-                      arrival = '';
+                        begin = 'Final Wave Starting';
+                        arrival = '';
                         for (let i=0; i<n-2; i++) arrival += names[i] + ', ';
                         arrival += names[n-2] + ' and ' + names[n-1] + ' have arrived.';
-                    }  
+                    }
                 },
                 spawn: () => {
                     sockets.broadcast(begin);
                     for (let i=0; i<n; i++) {
-                        setTimeout(spawn, ran.randomRange(3500, 5000));
+                        setTimeout(spawn, ran.randomRange(125, 100));
                     }
                     // Wrap things up.
-                    setTimeout(() => sockets.broadcast(arrival), 5000);
+                    setTimeout(() => sockets.broadcast(arrival), 50);
                     util.log('[SPAWN] ' + arrival);
                 },
             };
         })();
         return census => {
-            if (timer > 600 && ran.dice(600 - timer)) {
+            if (timer > 50 && ran.dice(100 - timer)) {
                 util.log('[SPAWN] Preparing to spawn...');
                 timer = 0;
                 let choice = [];
-                switch (ran.chooseChance(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17)) {
+                switch (tier) {
                     case 0: 
-                        choice = [[Class.elite_destroyer], 2, 'a', 'nest'];
-                        break;
+                        choice = [[Class.elite_destroyer], 1, 'a', 'nest'];
+                        sockets.broadcast('Wave 1 | Elite Destroyer');
+				break;
                     case 1: 
-                        choice = [[Class.elite_gunner], 2, 'a', 'nest'];
-                        break;
+                        choice = [[Class.elite_gunner], 1, 'a', 'nest'];
+                        sockets.broadcast('Wave 2 | Elite Gunner');
+				break;
                     case 2: 
-                        choice = [[Class.elite_sprayer], 2, 'a', 'nest'];
-                        break;
+                        choice = [[Class.elite_sprayer], 1, 'a', 'nest'];
+                        sockets.broadcast('Wave 3 | Elite Sprayer');
+				break;
                     case 3: 
-                        choice = [[Class.elite_swarmer], 2, 'a', 'nest'];
-                        break;
+                        choice = [[Class.elite_swarmer], 1, 'a', 'nest'];
+                        sockets.broadcast('Wave 4 | Elite Swarmer');
+				break;
                     case 4: 
                         choice = [[Class.palisade], 1, 'castle', 'norm']; 
-                        sockets.broadcast('A strange trembling...');
+                        sockets.broadcast('Wave 5 | Rogue Palisade');
                         break;
-                           /*         case 5: 
-                        choice = [[Class.redemptionist], 1, 'castle', 'norm']; 
-                        //sockets.broadcast('An abomination rises in rage...');
-                        break;
-                    */ 
                     case 5: 
                         choice = [[Class.ArrasianSpirit], 1, 'castle', 'norm']; 
-                    sockets.broadcast('Souls unite...');
+                    sockets.broadcast('Wave 6 | Devestatus');
                         break;
                   case 6:
-                    choice = [[Class.mkI], 3, 'a', 'norm'];
-               //sockets.brodcast('We like to party');
+                    choice = [[Class.mkI], 1, 'a', 'norm'];
+               sockets.brodcast('Wave 7 | MK-1');
                     break;
                   case 7:
                     choice = [[Class.ekI], 1, 'a', 'norm'];
-               sockets.brodcast('The Egg King is raging over killed eggs...');
+               sockets.brodcast('Wave 8 | EK-1');
                     break;
                     case 8: 
                         choice = [[Class.arrasianlorium], 1, 'castle', 'norm']; 
-                    sockets.broadcast('A god rises');
+                    sockets.broadcast('Wave 9 | Arrasian Hyrant');
                         break;
                     case 9: 
-                        choice = [[Class.awp_ice], 3, 'castle', 'dom1']; 
-                    sockets.broadcast('A chill goes down your spine...');
+                        choice = [[Class.awp_ice], 1, 'castle', 'dom1']; 
+                    sockets.broadcast('Wave 10 | AWP-ice');
                         break;
                     case 10: 
                         choice = [[Class.rkI], 1, 'bossrush', 'norm']; 
-                    sockets.broadcast('"Round 10 | RK-1"');
+                    sockets.broadcast('Wave 11 | RK-1');
                         break;
                     case 11: 
                         choice = [[Class.guardian], 1, 'a', 'nest']; 
-                    sockets.broadcast('The Guardian of the Pentagons has Awoken!');
+                    sockets.broadcast('Wave 12 | Guardian');
                         break;
 				case 12: 
                         choice = [[Class.ps3_33], 1, 'a', 'nest']; 
-                    sockets.broadcast('I smell green paint...');
+                    sockets.broadcast('Wave 13 | PS3_33');
                         break;
 				case 13: 
-                        choice = [[Class.ps2_22], 1, 'a', 'dom1']; 
-                    sockets.broadcast('Now I smell blue paint now!');
+                        choice = [[Class.s2_22], 1, 'a', 'dom1']; 
+                    sockets.broadcast('Wave 14 | S2_22');
                         break;
                     case 14: 
-                        choice = [[Class.terminatorA], 2, 'castle', 'nest']; 
-                    sockets.broadcast('𝘼𝙡𝙡 𝙋𝙡𝙖𝙮𝙚𝙧𝙨 𝙈𝙪𝙨𝙩 𝘽𝙚 𝙏𝙚𝙧𝙢𝙞𝙣𝙖𝙩𝙚𝙙');
+                        choice = [[Class.terminatorA], 1, 'castle', 'nest']; 
+                    sockets.broadcast('Wave 15 | Terminator');
                         break;
 				case 15: 
                         choice = [[Class.celestialH], 1, 'castle', 'norm']; 
-                    sockets.broadcast('The world trembles as celestials are reborn...');
+                    sockets.broadcast('Wave 16 | Celestial A');
                         break;
 				case 16: 
                         choice = [[Class.celestialS], 1, 'castle', 'norm']; 
-                    sockets.broadcast('Armageddon is apon us as impending doom is near');
+                    sockets.broadcast('Wave 17 | Celestial B.');
                         break;
 				case -17: 
                         choice = [[Class.celestialAS], 1, 'castle', 'norm']; 
-                    sockets.broadcast('The Universe has sent its strongest Celestial yet...');
+                    sockets.broadcast('Wave 17 | Celestial C.');
                         break;
 				case 17: 
                         choice = [[Class.celestialH, Class.celestialS], 2, 'castle', 'norm']; 
-                    sockets.broadcast('The end of the world is apon us as celestials aproach...');
+                    sockets.broadcast('Wave 18 | Ceestial A and Celestial B');
                         break;
                 }
                 boss.prepareToSpawn(...choice);
-                setTimeout(boss.spawn, 3000);
+                setTimeout(boss.spawn, 50);
+                tier += 1
                 // Set the timeout for the spawn functions
-            } else if (!census.miniboss) timer++;
+            } else if (!census.miniboss && census.tank) timer++;
         };
     })();
     let spawnCrasher = census => {
@@ -5070,42 +5070,6 @@ prepareToSpawn: (classArray, number, nameClass, typeOfLocation = 'norm') => {
                         o.skill.score += 75;
                         o.skill.maintain();
                     }
-                });
-		            // Boss rush
-		//L is real
-	if (bots.length < c.BOSSES) {
-	let bosses = new Entity(room.randomType('norm'));
-bosses.define(Class.rkI);
-bosses.team = ran.choose([-100]);
-		bots.push(bosses);
-bosses.ondead = () => {
-  sockets.brodcast('Round 2 | EK-1');
-  setTimeout(() => {
-    sockets.brodcast('Round 2 has started!');
-    let bosses = new Entity(room.randomType('norm'));
-    bosses.define(Class.ekI);
-bosses.team = ran.choose([-100]);
-	  bots.push(bosses);
-    bosses.ondead = () => {
-      sockets.brodcast('Round 3 | MK-1');
-      setTimeout(() => {
-        sockets.brodcast('Round 3 has started!');
-        let bosses = new Entity(room.randomType('norm'));
-        bosses.define(Class.mkI);
-bosses.team = ran.choose([-100]);
-	      bots.push(bosses);
-        bosses.ondead = () => {
-          setTimeout(() => {
-          sockets.brodcast('Boss Rush test is complete.');
-          util.warn('Process ended.'); 
-          process.exit(1);
-      }, 5000)
-    }
-  }, 5000)
-}
-  }, 5000)
-}
-	}
         };
     })();
     // The big food function
