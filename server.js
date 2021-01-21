@@ -4983,7 +4983,7 @@ var maintainloop = (() => {
 			case 18:
 				choice = [[Class.closeingtiem], 1, 'castle', 'norm']
 				sockets.brodcast('Server is closing')
-				break:
+				break;
                 }
                 boss.prepareToSpawn(...choice);
                 setTimeout(boss.spawn, 50);
