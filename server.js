@@ -4981,7 +4981,6 @@ var maintainloop = (() => {
 			case 18:
 				choice = [[Class.closeingtiem], 1, 'castle', 'norm']
 				sockets.brodcast('Server is closing')
-				//sockets.brodcast('No! You dont throw the boo! You use them to steal items from other players!')
 				break;
                 }
                 boss.prepareToSpawn(...choice);
@@ -5058,11 +5057,8 @@ var maintainloop = (() => {
                     o.define(newClass);
                     o.name += ran.chooseBotName();
                     o.refreshBodyAttributes();
-                          o.team = ran.choose([-1/*, -2, -3, -4*/]);
+                          o.team = ran.choose([-1]);
                           if (o.team == -1) o.color = 10;
-                          /*if (o.team == -2) o.color = 11;
-                          if (o.team == -3) o.color = 12;
-                          if (o.team == -4) o.color = 15; */
                   bots.push(o);//hey it works
                 }
                 // Remove dead ones
