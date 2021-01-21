@@ -5012,7 +5012,7 @@ var maintainloop = (() => {
         }
     };
     // The NPC function
-    let makenpcs = (() => {
+      let makenpcs = (() => {
         // Make base protectors if needed.
             let f = (loc, team) => { 
                 let o = new Entity(loc);
@@ -5026,23 +5026,6 @@ var maintainloop = (() => {
 
         // Return the spawning function
         let bots = [];
-        return () => {
-            let census = {
-                crasher: 0,
-                miniboss: 0,
-                tank: 0,
-            };    
-            let npcs = entities.map(function npcCensus(instance) {
-                if (census[instance.type] != null) {
-                    census[instance.type]++;
-                    return instance;
-                }
-            }).filter(e => { return e; });    
-            // Spawning
-            spawnCrasher(census);
-            spawnBosses(census);
-            // Bots
-                           let bots = [];
         return () => {
             let census = {
                 crasher: 0,
