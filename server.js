@@ -49,7 +49,7 @@ const room = {
     width: c.WIDTH,
     height: c.HEIGHT,
     setup: c.ROOM_SETUP,
-    xgrid: c.X_GRID, 
+    xgrid: c.X_GRID,  
     ygrid: c.Y_GRID,
     gameMode: c.MODE,
     skillBoost: c.SKILL_BOOST,
