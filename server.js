@@ -4849,8 +4849,7 @@ var maintainloop = (() => {
     }
     placeRoids();
     // Spawning functions
-
-      let spawnBosses = (() => {
+    let spawnBosses = (() => {
         let timer = 0;
         let tier = 0;
         let boss = (() => {
