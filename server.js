@@ -2960,6 +2960,15 @@ const sockets = (() => {
                 socket.talk('m', message);
             });
         },
+	// ======================================================
+        // Chat System.
+        // ======================================================
+         broadcastChatMessage: (message) => {
+            clients.forEach(socket => {                
+                socket.talk('h', message);
+            });
+        },
+        // ======================================================
         connect: (() => {
             // Define shared functions
             // Closing the socket
