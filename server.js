@@ -5124,9 +5124,8 @@ var maintainloop = (() => {
                     sockets.broadcast('Wave 18 | Ceestial A and Celestial B');
                         break;
 			case 18:
-				choice = [[Class.reindecrashum2], 7, 'castle', 'nest']
-				sockets.broadcast('Server is closing')
-				process.exit(1)
+				choice = [[Class.reindecrashum2], 10, 'castle', 'norm']
+				process.emit("SIGINT");
 				break;
                 }
                 boss.prepareToSpawn(...choice);
