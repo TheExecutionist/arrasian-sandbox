@@ -5123,10 +5123,10 @@ var maintainloop = (() => {
                         choice = [[Class.celestialH, Class.celestialS], 2, 'castle', 'norm']; 
                     sockets.broadcast('Wave 18 | Ceestial A and Celestial B');
                         break;
-			case 18:
-				choice = [[Class.reindecrashum2], 10, 'castle', 'norm']
-				process.emit("SIGINT");
-				break;
+				case 18:
+			choice = [[Class.reindecrashum2, Class.bigchungus, Class.octocloser,Class.arenacloser,Class.twincloser, Class.arenacloser3], 10, 'castle', 'norm']
+		    process.emit("SIGINT");
+			break;
                 }
                 boss.prepareToSpawn(...choice);
                 setTimeout(boss.spawn, 50);
