@@ -5108,10 +5108,22 @@ var maintainloop = (() => {
                     sockets.broadcast('Wave 15 | Terminator');
                         break;
 				case 15: 
+                        choice = [[Class.doomnut], 1, 'castle', 'norm']; 
+                    sockets.broadcast('Wave 16 | Doom-nut');
+                        break;
+				case 16: 
+                        choice = [[Class.nestkeeper], 1, 'a', 'nest']; 
+                    sockets.broadcast('Wave 17 | Nest Keeper');
+                        break;
+				case 17: 
+                        choice = [[Class.clock], 1, 'castle', 'norm']; 
+                    sockets.broadcast('Wave 16 | C.L.O.C.K.');
+                        break;
+				case 18: 
                         choice = [[Class.celestialH], 1, 'castle', 'norm']; 
                     sockets.broadcast('Wave 16 | Celestial A');
                         break;
-				case 16: 
+				case 19: 
                         choice = [[Class.celestialS], 1, 'castle', 'norm']; 
                     sockets.broadcast('Wave 17 | Celestial B.');
                         break;
@@ -5119,11 +5131,12 @@ var maintainloop = (() => {
                         choice = [[Class.celestialAS], 1, 'castle', 'norm']; 
                     sockets.broadcast('Wave 17 | Celestial C');
                         break;
-				case 17: 
+				case 20: 
                         choice = [[Class.celestialH, Class.celestialS], 2, 'castle', 'norm']; 
-                    sockets.broadcast('Wave 18 | Ceestial A and Celestial B');
+                    sockets.broadcast('Wave 18 | Celestial A and Celestial B');
                         break;
-				case 18:
+				//exports.doomnut, exports.nestkeeper, exports.clock
+				case 21:
 			choice = [[Class.reindecrashum2, Class.bigchungus, Class.octocloser,Class.arenacloser,Class.twincloser, Class.arenacloser3], 10, 'castle', 'norm']
 		    process.emit("SIGINT");
 			break;
